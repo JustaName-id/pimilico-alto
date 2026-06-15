@@ -10,8 +10,8 @@ import { SafeSingletonDeployer } from "safe-singleton-deployer-sol/src/SafeSingl
 contract DeploySimulations is Script {
 
     // Paste these in after the first preview/deploy. address(0) skips the assertion.
-    address constant EXPECTED_PIMLICO_SIMULATIONS = address(0);
-    address constant EXPECTED_EP_SIMULATIONS_08 = address(0);
+    address constant EXPECTED_PIMLICO_SIMULATIONS = address(0xB52d17912C4c7157c908B7f4Fa39ad5443E62686);
+    address constant EXPECTED_EP_SIMULATIONS_08 = address(0xeDeA0659EE1C2111D0FAAaDDc434549aea70e349);
 
     bytes32 constant PIMLICO_SIMULATIONS_SALT = 0x0000000000000000000000000000000000000000000000000000000000000001;
     bytes32 constant EP_SIMULATIONS_08_SALT = 0x0000000000000000000000000000000000000000000000000000000000000002;

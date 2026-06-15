@@ -89,11 +89,11 @@ ifeq ($(findstring --network linea-sepolia,$(ARGS)),--network linea-sepolia)
 endif
 
 ifeq ($(findstring --network celo-mainnet,$(ARGS)),--network celo-mainnet)
-	NETWORK_ARGS := --rpc-url $(CELO_MAINNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier-url https://api.etherscan.io/v2/api --etherscan-api-key $(ETHERSCAN_API_KEY) --etherscan-api-version v2 --chain 42220 -vvvv
+	NETWORK_ARGS := --rpc-url $(CELO_MAINNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier-url https://api.etherscan.io/v2/api --etherscan-api-key $(ETHERSCAN_API_KEY) --chain 42220 --legacy -vvvv
 endif
 
 ifeq ($(findstring --network celo-sepolia,$(ARGS)),--network celo-sepolia)
-	NETWORK_ARGS := --rpc-url $(CELO_SEPOLIA_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier-url https://api.etherscan.io/v2/api --etherscan-api-key $(ETHERSCAN_API_KEY) --etherscan-api-version v2 --chain 11142220 -vvvv
+	NETWORK_ARGS := --rpc-url $(CELO_SEPOLIA_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier-url https://api.etherscan.io/v2/api --etherscan-api-key $(ETHERSCAN_API_KEY) --chain 11142220 -vvvv
 endif
 
 ifeq ($(findstring --network flare-mainnet,$(ARGS)),--network flare-mainnet)
@@ -122,6 +122,14 @@ endif
 
 ifeq ($(findstring --network arc-testnet,$(ARGS)),--network arc-testnet)
 	NETWORK_ARGS := --rpc-url $(ARC_TESTNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier blockscout --verifier-url https://testnet.arcscan.app/api --chain 5042002 -vvvv
+endif
+
+ifeq ($(findstring --network polygon-mainnet,$(ARGS)),--network polygon-mainnet)
+	NETWORK_ARGS := --rpc-url $(POLYGON_MAINNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) --chain 137 -vvvv
+endif
+
+ifeq ($(findstring --network polygon-amoy,$(ARGS)),--network polygon-amoy)
+	NETWORK_ARGS := --rpc-url $(POLYGON_AMOY_RPC_URL) --account $(ACCOUNT) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) --chain 80002 -vvvv
 endif
 
 deploy-mainnet:
@@ -191,4 +199,10 @@ deploy-gnosis-mainnet:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
 
 deploy-arc-testnet:
+	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
+
+deploy-polygon-mainnet:
+	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
+
+deploy-polygon-amoy:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
