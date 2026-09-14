@@ -148,6 +148,10 @@ ifeq ($(findstring --network unichain-mainnet,$(ARGS)),--network unichain-mainne
 	NETWORK_ARGS := --rpc-url $(UNICHAIN_MAINNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier-url https://api.etherscan.io/v2/api --etherscan-api-key $(ETHERSCAN_API_KEY) --chain 130 -vvvv
 endif
 
+ifeq ($(findstring --network monad-mainnet,$(ARGS)),--network monad-mainnet)
+	NETWORK_ARGS := --rpc-url $(MONAD_MAINNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier-url https://api.etherscan.io/v2/api --etherscan-api-key $(ETHERSCAN_API_KEY) --chain 143 -vvvv
+endif
+
 deploy-mainnet:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
 
@@ -233,4 +237,7 @@ deploy-hyvechain-mainnet:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
 
 deploy-unichain-mainnet:
+	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
+
+deploy-monad-mainnet:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
