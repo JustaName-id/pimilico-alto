@@ -39,6 +39,7 @@ abstract contract CodeConstants {
 
     uint256 public constant GNOSIS_CHAIN_ID = 100;
 
+    uint256 public constant ARC_CHAIN_ID = 5042;
     uint256 public constant ARC_TESTNET_CHAIN_ID = 5_042_002;
 
     uint256 public constant POLYGON_CHAIN_ID = 137;

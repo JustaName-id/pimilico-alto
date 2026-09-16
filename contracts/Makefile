@@ -152,6 +152,10 @@ ifeq ($(findstring --network monad-mainnet,$(ARGS)),--network monad-mainnet)
 	NETWORK_ARGS := --rpc-url $(MONAD_MAINNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier-url https://api.etherscan.io/v2/api --etherscan-api-key $(ETHERSCAN_API_KEY) --chain 143 -vvvv
 endif
 
+ifeq ($(findstring --network arc-mainnet,$(ARGS)),--network arc-mainnet)
+	NETWORK_ARGS := --rpc-url $(ARC_MAINNET_RPC_URL) --account $(ACCOUNT) --broadcast --verify --verifier etherscan --verifier-url "https://api.etherscan.io/v2/api?chainid=5042" --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+endif
+
 deploy-mainnet:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
 
@@ -240,4 +244,7 @@ deploy-unichain-mainnet:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
 
 deploy-monad-mainnet:
+	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
+
+deploy-arc-mainnet:
 	@forge script script/DeploySimulations.s.sol:DeploySimulations $(NETWORK_ARGS)
